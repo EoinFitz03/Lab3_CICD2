@@ -7,7 +7,7 @@ from app.models import Base
 from sqlalchemy.pool import StaticPool
 
 # Use an in-memory SQLite database for testing
-TEST_DB_URL = "sqlite:///./app.db:"
+TEST_DB_URL = "sqlite:///./app.db:"  # chaged
 
 engine = create_engine(TEST_DB_URL, connect_args={"check_same_thread": False},poolclass=StaticPool) 
 TestingSessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
