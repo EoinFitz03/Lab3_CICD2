@@ -6,13 +6,15 @@ app = FastAPI()
 users: list[User] = []
 
 
-@app.get("/Health")
+@app.get("/health")
 def health():
-    return {"Status": "ok"}
+    return {"status": "ok"}
+
 
 @app.get("/hello")
 def hello():
     return {"message": "Hello, World!"}
+
 
 
 @app.get("/api/users")
@@ -33,7 +35,7 @@ def add_user(user: User):
     users.append(user)
     return user
 
-@app.put("/api/usurs{user_id}", status_code=status.HTTP_200_OK)
+@app.put("/api/users/{user_id}", status_code=status.HTTP_200_OK)
 def update_user(user_id: int, updated_user: User):
     for idx, u in enumerate(users):
         if u.user_id == user_id:
@@ -41,7 +43,7 @@ def update_user(user_id: int, updated_user: User):
             return updated_user
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found") 
 
-@app.delete("/api/usurs{user_id}", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete("/api/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 def Delete_user(user_id: int):
     for idx, u in enumerate(users):
         if u.user_id == user_id:
